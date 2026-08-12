@@ -1,0 +1,26 @@
+{
+    "agents": [
+        "codex"
+    ],
+    "cloud": false,
+    "packages": [
+        "nativephp/mobile"
+    ],
+    "skills": [
+        "infer-conventions",
+        "laravel-best-practices",
+        "wayfinder-development",
+        "pest-testing",
+        "inertia-react-development",
+        "tailwindcss-development",
+        "nativephp-mobile",
+        "nativephp-webview-to-native",
+        "laravel-controllers",
+        "laravel-database-optimization",
+        "laravel-sanctum",
+        "nativephp-mobile-architecture",
+        "php-best-practices",
+        "phpstan-fixer",
+        "web-design-guidelines"
+    ]
+}

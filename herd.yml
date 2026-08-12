@@ -1,0 +1,3 @@
+name: laravel-native-boilerplate
+php: '8.4'
+secured: true

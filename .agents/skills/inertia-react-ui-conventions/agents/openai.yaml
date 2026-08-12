@@ -1,0 +1,4 @@
+interface:
+    display_name: 'Inertia React UI Conventions'
+    short_description: 'Build consistent, accessible Inertia React UI'
+    default_prompt: "Use $inertia-react-ui-conventions to build or refactor this Inertia React interface with the project's reusable UI patterns."

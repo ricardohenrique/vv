@@ -1,0 +1,4 @@
+interface:
+  display_name: "NativePHP Mobile Architecture"
+  short_description: "Plan secure, resilient NativePHP mobile apps"
+  default_prompt: "Use $nativephp-mobile-architecture to design or review this NativePHP mobile architecture."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Laravel Sanctum"
+  short_description: "Build secure Sanctum APIs for native apps"
+  default_prompt: "Use $laravel-sanctum to add a versioned, authenticated mobile API to this Laravel application."
