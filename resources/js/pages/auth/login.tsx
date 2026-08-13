@@ -1,5 +1,5 @@
 import { Form, Head } from '@inertiajs/react';
-import { register } from '@/routes';
+import { home } from '@/routes';
 import { store } from '@/routes/login';
 
 export default function Login() {
@@ -17,7 +17,7 @@ export default function Login() {
                             Welcome back
                         </h1>
                         <p className="mt-2 text-sm leading-6 text-[#706f6c] dark:text-[#a1a09a]">
-                            Log in to continue to the boilerplate.
+                            Sign in to manage Viral Verdict articles.
                         </p>
                     </div>
 
@@ -116,12 +116,12 @@ export default function Login() {
                     </Form>
 
                     <p className="mt-6 text-center text-sm text-[#706f6c] dark:text-[#a1a09a]">
-                        New to the boilerplate?{' '}
+                        Looking for reviews?{' '}
                         <a
-                            href={register.url()}
+                            href={home.url()}
                             className="font-medium text-[#f53003] underline decoration-[#f53003]/30 underline-offset-4 transition hover:decoration-[#f53003] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f53003] dark:text-[#ff4433]"
                         >
-                            Create an account
+                            Visit the home page
                         </a>
                     </p>
                 </section>

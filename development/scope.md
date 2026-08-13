@@ -167,14 +167,21 @@ editor is deferred.
 - Native iOS and Android article experiences, offline access, and push
   notifications.
 
-## Decisions still required before implementation reaches them
+## Implementation decisions
 
-- Choose the article body's authoring format (for example, sanitized rich text
-  or Markdown) and its sanitization rules.
-- Set product-image dimensions, maximum upload size, accepted formats,
-  transformations, and production storage disk.
-- Confirm whether the 0–10 rating scale and one-decimal precision match the
-  desired editorial style.
+- The MVP article body uses plain text with preserved paragraph breaks. Rich
+  text or Markdown remains deferred until a sanitization contract is chosen.
+- The MVP accepts JPG, PNG, and WebP product images up to 5 MB on Laravel's
+  configured public disk. Production storage and image transformations remain
+  deployment decisions.
+- Ratings use the documented 0–10 scale with one-decimal precision.
+- Administrator access uses an explicit `is_admin` user attribute and public
+  browser registration is disabled.
+
+## Decisions still required before launch
+
+- Set required product-image dimensions, transformations, and the production
+  storage disk.
 - Define how administrator accounts are provisioned in production and whether
   more than one administrator role is needed.
 - Supply the final affiliate disclosure copy and any jurisdiction-specific
@@ -182,7 +189,8 @@ editor is deferred.
 
 ## Current implementation status
 
-The repository currently provides the Laravel, Inertia, React, authentication,
-Sanctum API, and NativePHP boilerplate foundations. The article domain, public
-catalogue, and administrative editorial workflow described above have not yet
-been implemented.
+The repository implements the web MVP: the article domain, public catalogue,
+dedicated review pages, administrator authorization, image uploads, and the
+draft/publish editorial workflow. The versioned Sanctum API and NativePHP
+foundation remain available, but article APIs and native article screens are
+deferred.

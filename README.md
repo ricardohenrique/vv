@@ -50,9 +50,9 @@ database. Then start the application with:
 composer run dev
 ```
 
-The repository currently includes the boilerplate authentication and API
-foundation. The Viral Verdict article catalogue and editorial workflow are the
-next implementation scope described in `development/scope.md`.
+The repository includes the public article catalogue, dedicated review pages,
+administrator authentication, image uploads, and the draft/publish editorial
+workflow described in `development/scope.md`.
 
 To create the existing local development account, run:
 
@@ -61,7 +61,15 @@ php artisan db:seed
 ```
 
 The seeded credentials are `test@example.com` and `password`. They are for
-local development only.
+local development only. The seeded user is an administrator and can manage
+articles at `/admin/articles`.
+
+Uploaded article images use the public filesystem disk. Create the local
+storage link once with:
+
+```bash
+php artisan storage:link
+```
 
 For Laravel Herd configuration, see
 [`development/herd.md`](development/herd.md).

@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -15,7 +16,12 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
         $request->session()->regenerate();
 
-        return redirect()->intended(route('home', absolute: false));
+        $user = $request->user();
+        $destination = $user instanceof User && $user->is_admin
+            ? route('admin.articles.index', absolute: false)
+            : route('home', absolute: false);
+
+        return redirect()->intended($destination);
     }
 
     public function destroy(Request $request): RedirectResponse

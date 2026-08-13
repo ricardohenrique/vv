@@ -3,17 +3,17 @@
 use App\Models\User;
 use Inertia\Testing\AssertableInertia as Assert;
 
-it('opens the login page from the web root', function () {
-    $this->get('/')
-        ->assertRedirect(route('login'));
-
+it('opens the public home page and the administrator login page', function () {
+    $this->get(route('home'))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page->component('articles/index'));
     $this->get(route('login'))
         ->assertOk()
         ->assertInertia(fn (Assert $page) => $page->component('auth/login'));
 });
 
-it('requires authentication for the boilerplate home page', function () {
-    $this->get(route('home'))
+it('requires authentication for the administrator area', function () {
+    $this->get(route('admin.articles.index'))
         ->assertRedirect(route('login'));
 });
 
@@ -32,58 +32,13 @@ it('serves the authenticated experience from the native web entry', function () 
         ->assertInertia(fn (Assert $page) => $page->component('welcome'));
 });
 
-it('opens the registration page', function () {
-    $this->get(route('register'))
-        ->assertOk()
-        ->assertInertia(fn (Assert $page) => $page->component('auth/register'));
-});
-
-it('redirects authenticated users away from registration', function () {
-    $user = User::factory()->create();
-
-    $this->actingAs($user)
-        ->get(route('register'))
-        ->assertRedirect(route('home'));
-});
-
-it('registers and authenticates a new user', function () {
-    $this->post(route('register.store'), [
-        'name' => 'New User',
-        'email' => 'new@example.com',
-        'password' => 'password',
-        'password_confirmation' => 'password',
-    ])->assertRedirect(route('home'));
-
-    $user = User::query()->where('email', 'new@example.com')->firstOrFail();
-
-    $this->assertAuthenticatedAs($user);
-    $this->assertDatabaseHas('users', [
-        'name' => 'New User',
-        'email' => 'new@example.com',
-    ]);
-});
-
-it('validates new user registration details', function () {
-    $existingUser = User::factory()->create();
-
-    $this->from(route('register'))->post(route('register.store'), [
-        'name' => '',
-        'email' => $existingUser->email,
-        'password' => 'password',
-        'password_confirmation' => 'different-password',
-    ])->assertRedirect(route('register'))
-        ->assertSessionHasErrors(['name', 'email', 'password']);
-
-    $this->assertGuest();
-});
-
-it('authenticates a user and opens the boilerplate', function () {
-    $user = User::factory()->create();
+it('authenticates an administrator and opens article management', function () {
+    $user = User::factory()->admin()->create();
 
     $this->post(route('login.store'), [
         'email' => $user->email,
         'password' => 'password',
-    ])->assertRedirect(route('home'));
+    ])->assertRedirect(route('admin.articles.index'));
 
     $this->assertAuthenticatedAs($user);
 });
@@ -119,14 +74,6 @@ it('rate limits repeated login failures', function () {
 
     expect($response->getSession()->get('errors')->first('email'))
         ->not->toBe(trans('auth.failed'));
-});
-
-it('rate limits repeated registration attempts', function () {
-    foreach (range(1, 5) as $attempt) {
-        $this->post(route('register.store'), [])->assertSessionHasErrors(['name', 'email', 'password']);
-    }
-
-    $this->post(route('register.store'), [])->assertTooManyRequests();
 });
 
 it('logs out an authenticated user', function () {
