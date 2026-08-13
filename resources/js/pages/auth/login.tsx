@@ -7,16 +7,30 @@ export default function Login() {
         <>
             <Head title="Log in" />
 
-            <main className="flex min-h-screen items-center justify-center bg-[#f7f7f5] px-6 py-12 text-[#1b1b18] dark:bg-[#0a0a0a] dark:text-[#ededec]">
-                <section className="w-full max-w-md rounded-2xl border border-black/10 bg-white p-8 shadow-xl shadow-black/5 sm:p-10 dark:border-white/10 dark:bg-[#161615] dark:shadow-black/30">
+            <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-canvas px-6 py-12 text-ink">
+                <div
+                    aria-hidden="true"
+                    className="absolute -top-40 -right-40 h-[32rem] w-[32rem] rounded-full bg-brand-100 blur-3xl"
+                />
+                <section className="relative w-full max-w-md rounded-3xl border border-line bg-white p-8 shadow-[0_24px_70px_rgba(11,42,91,0.12)] sm:p-10">
                     <div className="mb-8">
-                        <div className="mb-6 flex h-11 w-11 items-center justify-center rounded-xl bg-[#f53003] text-sm font-semibold text-white shadow-sm">
-                            LN
-                        </div>
-                        <h1 className="text-2xl font-semibold tracking-tight">
+                        <a
+                            href={home.url()}
+                            className="mb-8 block w-fit rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-500"
+                        >
+                            <img
+                                src="/assets/viral-verdict-logo.png"
+                                alt="Viral Verdict"
+                                className="h-20 w-auto"
+                            />
+                        </a>
+                        <p className="text-xs font-bold tracking-[0.18em] text-brand-700 uppercase">
+                            Editorial access
+                        </p>
+                        <h1 className="mt-2 text-3xl font-black tracking-tight text-navy">
                             Welcome back
                         </h1>
-                        <p className="mt-2 text-sm leading-6 text-[#706f6c] dark:text-[#a1a09a]">
+                        <p className="mt-2 text-sm leading-6 text-muted">
                             Sign in to manage Viral Verdict articles.
                         </p>
                     </div>
@@ -48,14 +62,14 @@ export default function Login() {
                                                 ? 'email-error'
                                                 : undefined
                                         }
-                                        className="h-11 w-full rounded-lg border border-black/15 bg-white px-3.5 text-sm transition outline-none placeholder:text-[#a1a09a] focus:border-[#f53003] focus:ring-3 focus:ring-[#f53003]/15 dark:border-white/15 dark:bg-[#0f0f0e] dark:focus:border-[#ff4433]"
+                                        className="h-11 w-full rounded-xl border border-line bg-white px-3.5 text-sm transition outline-none placeholder:text-slate-400 focus:border-brand-500 focus:ring-3 focus:ring-brand-500/15"
                                         placeholder="you@example.com"
                                     />
                                     {errors.email && (
                                         <p
                                             id="email-error"
                                             role="alert"
-                                            className="mt-2 text-sm text-red-600 dark:text-red-400"
+                                            className="mt-2 text-sm text-red-600"
                                         >
                                             {errors.email}
                                         </p>
@@ -81,25 +95,25 @@ export default function Login() {
                                                 ? 'password-error'
                                                 : undefined
                                         }
-                                        className="h-11 w-full rounded-lg border border-black/15 bg-white px-3.5 text-sm transition outline-none focus:border-[#f53003] focus:ring-3 focus:ring-[#f53003]/15 dark:border-white/15 dark:bg-[#0f0f0e] dark:focus:border-[#ff4433]"
+                                        className="h-11 w-full rounded-xl border border-line bg-white px-3.5 text-sm transition outline-none focus:border-brand-500 focus:ring-3 focus:ring-brand-500/15"
                                     />
                                     {errors.password && (
                                         <p
                                             id="password-error"
                                             role="alert"
-                                            className="mt-2 text-sm text-red-600 dark:text-red-400"
+                                            className="mt-2 text-sm text-red-600"
                                         >
                                             {errors.password}
                                         </p>
                                     )}
                                 </div>
 
-                                <label className="flex w-fit items-center gap-2.5 text-sm text-[#565652] dark:text-[#b5b5ae]">
+                                <label className="flex w-fit items-center gap-2.5 text-sm text-muted">
                                     <input
                                         name="remember"
                                         type="checkbox"
                                         value="1"
-                                        className="h-4 w-4 rounded border-black/20 accent-[#f53003] dark:border-white/20"
+                                        className="h-4 w-4 rounded border-line accent-brand-600"
                                     />
                                     Remember me
                                 </label>
@@ -107,7 +121,7 @@ export default function Login() {
                                 <button
                                     type="submit"
                                     disabled={processing}
-                                    className="flex h-11 w-full items-center justify-center rounded-lg bg-[#1b1b18] px-4 text-sm font-medium text-white transition hover:bg-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f53003] disabled:cursor-not-allowed disabled:opacity-60 dark:bg-[#ededec] dark:text-[#1b1b18] dark:hover:bg-white"
+                                    className="flex h-11 w-full items-center justify-center rounded-xl bg-brand-600 px-4 text-sm font-bold text-white transition hover:bg-navy focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 disabled:cursor-not-allowed disabled:opacity-60"
                                 >
                                     {processing ? 'Logging in…' : 'Log in'}
                                 </button>
@@ -115,11 +129,11 @@ export default function Login() {
                         )}
                     </Form>
 
-                    <p className="mt-6 text-center text-sm text-[#706f6c] dark:text-[#a1a09a]">
+                    <p className="mt-6 text-center text-sm text-muted">
                         Looking for reviews?{' '}
                         <a
                             href={home.url()}
-                            className="font-medium text-[#f53003] underline decoration-[#f53003]/30 underline-offset-4 transition hover:decoration-[#f53003] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f53003] dark:text-[#ff4433]"
+                            className="font-bold text-brand-700 underline decoration-brand-200 underline-offset-4 transition hover:decoration-brand-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500"
                         >
                             Visit the home page
                         </a>

@@ -8,4 +8,30 @@
         'Instrument Sans', ui-sans-serif, system-ui, sans-serif,
         'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
         'Noto Color Emoji';
+    --font-serif: Georgia, Cambria, 'Times New Roman', Times, serif;
+
+    --color-brand-50: #f4f8ff;
+    --color-brand-100: #e8f0ff;
+    --color-brand-200: #ccdcff;
+    --color-brand-300: #a6c1ff;
+    --color-brand-400: #7298ff;
+    --color-brand-500: #356cf5;
+    --color-brand-600: #1f52df;
+    --color-brand-700: #183fb5;
+    --color-brand-800: #17388f;
+    --color-brand-900: #163273;
+    --color-navy: #0b2a5b;
+    --color-ink: #142640;
+    --color-muted: #61718a;
+    --color-canvas: #f8faff;
+    --color-line: #dce5f3;
+}
+
+html {
+    color-scheme: light;
+    background: var(--color-canvas);
+}
+
+body {
+    text-rendering: optimizeLegibility;
 }

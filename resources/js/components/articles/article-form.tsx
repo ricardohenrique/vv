@@ -10,14 +10,14 @@ type ArticleFormProps = {
 };
 
 const control =
-    'mt-2 min-h-11 w-full rounded-xl border border-stone-300 bg-white px-3.5 py-2.5 text-sm outline-none transition focus:border-amber-500 focus:ring-3 focus:ring-amber-500/20 dark:border-stone-700 dark:bg-stone-950';
+    'mt-2 min-h-11 w-full rounded-xl border border-line bg-white px-3.5 py-2.5 text-sm text-ink outline-none transition placeholder:text-slate-400 focus:border-brand-500 focus:ring-3 focus:ring-brand-500/15';
 
 function FieldError({ id, error }: { id: string; error?: string }) {
     return error ? (
         <p
             id={id}
             role="alert"
-            className="mt-2 text-sm font-medium text-red-600 dark:text-red-400"
+            className="mt-2 text-sm font-medium text-red-600"
         >
             {error}
         </p>
@@ -34,7 +34,7 @@ export default function ArticleForm({
         <Form action={action} disableWhileProcessing>
             {({ errors, processing, progress }) => (
                 <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_320px]">
-                    <div className="space-y-6 rounded-2xl border border-stone-200 bg-white p-5 sm:p-8 dark:border-stone-800 dark:bg-stone-900">
+                    <div className="space-y-6 rounded-2xl border border-line bg-white p-5 shadow-sm sm:p-8">
                         <div>
                             <label
                                 htmlFor="title"
@@ -73,7 +73,7 @@ export default function ArticleForm({
                             />
                             <p
                                 id="slug-help"
-                                className="mt-2 text-xs text-stone-500 dark:text-stone-400"
+                                className="mt-2 text-xs text-muted"
                             >
                                 Letters, numbers, dashes, and underscores only.
                             </p>
@@ -121,7 +121,7 @@ export default function ArticleForm({
                             />
                             <p
                                 id="body-help"
-                                className="mt-2 text-xs text-stone-500 dark:text-stone-400"
+                                className="mt-2 text-xs text-muted"
                             >
                                 Plain text with paragraph breaks.
                             </p>
@@ -129,7 +129,7 @@ export default function ArticleForm({
                         </div>
                     </div>
                     <aside className="space-y-6">
-                        <div className="space-y-5 rounded-2xl border border-stone-200 bg-white p-5 dark:border-stone-800 dark:bg-stone-900">
+                        <div className="space-y-5 rounded-2xl border border-line bg-white p-5 shadow-sm">
                             {article ? (
                                 <img
                                     src={article.image_url}
@@ -152,11 +152,11 @@ export default function ArticleForm({
                                     required={!article}
                                     aria-invalid={Boolean(errors.image)}
                                     aria-describedby="image-help image-error"
-                                    className="mt-2 block w-full text-sm file:mr-3 file:rounded-full file:border-0 file:bg-amber-400 file:px-4 file:py-2 file:font-bold file:text-stone-950"
+                                    className="mt-2 block w-full text-sm text-muted file:mr-3 file:rounded-full file:border-0 file:bg-brand-100 file:px-4 file:py-2 file:font-bold file:text-brand-800 hover:file:bg-brand-200"
                                 />
                                 <p
                                     id="image-help"
-                                    className="mt-2 text-xs text-stone-500 dark:text-stone-400"
+                                    className="mt-2 text-xs text-muted"
                                 >
                                     JPG, PNG, or WebP. Maximum 5 MB.
                                 </p>
@@ -192,7 +192,7 @@ export default function ArticleForm({
                                 />
                             </div>
                         </div>
-                        <div className="space-y-5 rounded-2xl border border-stone-200 bg-white p-5 dark:border-stone-800 dark:bg-stone-900">
+                        <div className="space-y-5 rounded-2xl border border-line bg-white p-5 shadow-sm">
                             <div>
                                 <label
                                     htmlFor="rating"
@@ -277,7 +277,7 @@ export default function ArticleForm({
                                 />
                                 <p
                                     id="tags-help"
-                                    className="mt-2 text-xs text-stone-500 dark:text-stone-400"
+                                    className="mt-2 text-xs text-muted"
                                 >
                                     Separate up to 10 tags with commas.
                                 </p>
@@ -326,7 +326,7 @@ export default function ArticleForm({
                         <button
                             type="submit"
                             disabled={processing}
-                            className="min-h-12 w-full rounded-full bg-stone-950 px-5 font-bold text-white transition hover:bg-amber-500 hover:text-stone-950 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500 disabled:cursor-not-allowed disabled:opacity-60 dark:bg-white dark:text-stone-950 dark:hover:bg-amber-400"
+                            className="min-h-12 w-full rounded-full bg-brand-600 px-5 font-bold text-white transition hover:bg-navy focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 disabled:cursor-not-allowed disabled:opacity-60"
                         >
                             {processing ? 'Saving…' : submitLabel}
                         </button>
