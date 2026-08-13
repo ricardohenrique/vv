@@ -43,8 +43,19 @@ are maintained in [`development/scope.md`](development/scope.md).
 
 ## Local development
 
-Install the PHP and JavaScript dependencies, configure `.env`, and prepare the
-database. Then start the application with:
+Install the PHP and JavaScript dependencies, create the local environment, and
+prepare the database:
+
+```bash
+composer install
+npm install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate
+php artisan storage:link
+```
+
+Then start the application with:
 
 ```bash
 composer run dev
