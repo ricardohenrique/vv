@@ -1,4 +1,4 @@
-import { Form, Head } from '@inertiajs/react';
+import { Form, Head, Link } from '@inertiajs/react';
 import { home } from '@/routes';
 import { store } from '@/routes/login';
 
@@ -14,7 +14,7 @@ export default function Login() {
                 />
                 <section className="relative w-full max-w-md rounded-3xl border border-line bg-white p-8 shadow-[0_24px_70px_rgba(11,42,91,0.12)] sm:p-10">
                     <div className="mb-8">
-                        <a
+                        <Link
                             href={home.url()}
                             className="mb-8 block w-fit rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-500"
                         >
@@ -23,7 +23,7 @@ export default function Login() {
                                 alt="Viral Verdict"
                                 className="h-20 w-auto"
                             />
-                        </a>
+                        </Link>
                         <p className="text-xs font-bold tracking-[0.18em] text-brand-700 uppercase">
                             Editorial access
                         </p>
@@ -131,12 +131,12 @@ export default function Login() {
 
                     <p className="mt-6 text-center text-sm text-muted">
                         Looking for reviews?{' '}
-                        <a
+                        <Link
                             href={home.url()}
                             className="font-bold text-brand-700 underline decoration-brand-200 underline-offset-4 transition hover:decoration-brand-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500"
                         >
                             Visit the home page
-                        </a>
+                        </Link>
                     </p>
                 </section>
             </main>

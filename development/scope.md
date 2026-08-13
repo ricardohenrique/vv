@@ -13,6 +13,8 @@ commerce, or mobile features.
   account.
 - **Administrator:** signs in through the browser and can create, edit,
   publish, and unpublish articles.
+- Administrator authentication is available from the unadvertised `/admin`
+  entry point; the public interface does not display an editor-login link.
 - Public registration is not required for the MVP. Existing boilerplate
   registration must be removed or restricted before launch rather than being
   treated as an administrator-provisioning mechanism.
@@ -177,6 +179,9 @@ editor is deferred.
 - Ratings use the documented 0–10 scale with one-decimal precision.
 - Administrator access uses an explicit `is_admin` user attribute and public
   browser registration is disabled.
+- Seeded demo articles use ten packaged category photographs under public
+  assets. Administrator-uploaded images continue to use the configured public
+  filesystem disk.
 
 ## Decisions still required before launch
 

@@ -5,15 +5,12 @@ use App\Models\Category;
 use App\Models\User;
 use Database\Seeders\FreshReviewDatabaseSeeder;
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Storage;
 
 it('registers the fresh database command', function () {
     expect(Artisan::all())->toHaveKey('db:fresh-seed');
 });
 
 it('creates the complete review demo dataset', function () {
-    Storage::fake('public');
-
     $this->seed(FreshReviewDatabaseSeeder::class);
 
     expect(Article::query()->count())->toBe(500)
@@ -29,8 +26,8 @@ it('creates the complete review demo dataset', function () {
         ->each->toBe(100);
     expect(Article::query()->withCount('tags')->get()->pluck('tags_count'))
         ->each->toBeBetween(3, 10);
-
-    Storage::disk('public')->assertExists('demo/audio.svg');
+    expect(Article::query()->distinct()->count('image_path'))->toBe(10)
+        ->and(public_path('assets/demo-articles/audio.jpg'))->toBeFile();
 });
 
 it('refuses to rebuild the database outside local and testing environments', function () {

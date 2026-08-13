@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
 use App\Http\Controllers\Admin\PublishArticleController;
 use App\Http\Controllers\Admin\UnpublishArticleController;
+use App\Http\Controllers\AdminEntryController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\WebExperienceEntryController;
@@ -12,11 +13,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [ArticleController::class, 'index'])->name('home');
 Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('articles.show');
 
-Route::middleware('guest')->group(function (): void {
-    Route::inertia('/login', 'auth/login')->name('login');
-    Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login.store');
-
-});
+Route::get('/admin', AdminEntryController::class)->name('login');
+Route::post('/admin/login', [AuthenticatedSessionController::class, 'store'])
+    ->middleware('guest')
+    ->name('login.store');
 
 Route::middleware('auth')->group(function (): void {
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');

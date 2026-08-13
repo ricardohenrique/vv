@@ -39,6 +39,32 @@ it('shows the complete published article', function () {
         );
 });
 
+it('serves packaged demo images without public storage', function () {
+    $article = Article::factory()->published()->create([
+        'image_path' => 'assets/demo-articles/audio.jpg',
+    ]);
+
+    $this->get(route('home'))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->where('articles.data.0.id', $article->id)
+            ->where('articles.data.0.image_url', asset('assets/demo-articles/audio.jpg'))
+        );
+});
+
+it('maps legacy seeded images to packaged demo photographs', function () {
+    $article = Article::factory()->published()->create([
+        'image_path' => 'demo/audio.svg',
+    ]);
+
+    $this->get(route('home'))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->where('articles.data.0.id', $article->id)
+            ->where('articles.data.0.image_url', asset('assets/demo-articles/audio.jpg'))
+        );
+});
+
 it('does not disclose draft or future articles', function (string $state) {
     $article = Article::factory()->create([
         'published_at' => $state === 'future' ? now()->addDay() : null,

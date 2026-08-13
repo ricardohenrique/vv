@@ -10,11 +10,22 @@ it('opens the public home page and the administrator login page', function () {
     $this->get(route('login'))
         ->assertOk()
         ->assertInertia(fn (Assert $page) => $page->component('auth/login'));
+
+    expect(route('login', absolute: false))->toBe('/admin');
+    $this->get('/login')->assertNotFound();
 });
 
 it('requires authentication for the administrator area', function () {
     $this->get(route('admin.articles.index'))
         ->assertRedirect(route('login'));
+});
+
+it('redirects an authenticated administrator from the admin entry to article management', function () {
+    $user = User::factory()->admin()->create();
+
+    $this->actingAs($user)
+        ->get(route('login'))
+        ->assertRedirect(route('admin.articles.index'));
 });
 
 it('serves the native web entry without redirecting guests', function () {

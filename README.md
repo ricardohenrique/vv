@@ -72,8 +72,8 @@ php artisan db:seed
 ```
 
 The seeded credentials are `test@example.com` and `password`. They are for
-local development only. The seeded user is an administrator and can manage
-articles at `/admin/articles`.
+local development only. Open `/admin` to sign in; authenticated administrators
+are then taken to article management.
 
 To replace the entire local database with a populated review catalogue, run:
 
@@ -84,7 +84,8 @@ php artisan db:fresh-seed
 This destructive local-only command recreates the schema and seeds 500
 published articles across 10 categories and 5 administrator-authors. Each
 article receives between 3 and 10 tags. All seeded authors use the password
-`password`; the primary administrator remains `test@example.com`.
+`password`; the primary administrator remains `test@example.com`. Ten packaged
+demo photographs are distributed by category and work without a storage link.
 
 Uploaded article images use the public filesystem disk. Create the local
 storage link once with:

@@ -14,44 +14,21 @@ export default function ArticleIndex({
         <PublicLayout>
             <Head title="Independent product reviews" />
             <main>
-                <section className="relative overflow-hidden border-b border-line bg-white px-5 py-16 sm:px-8 sm:py-24">
-                    <div
-                        aria-hidden="true"
-                        className="absolute -top-40 right-[-12rem] h-[34rem] w-[34rem] rounded-full bg-brand-100 blur-3xl"
-                    />
-                    <div
-                        aria-hidden="true"
-                        className="absolute -bottom-48 left-1/3 h-80 w-80 rounded-full bg-brand-50 blur-3xl"
-                    />
-                    <div className="relative mx-auto max-w-7xl">
-                        <p className="text-xs font-black tracking-[0.25em] text-brand-700 uppercase">
-                            Tested. Scored. Verdict delivered.
-                        </p>
-                        <h1 className="mt-5 max-w-4xl text-5xl leading-[1.02] font-black tracking-[-0.045em] text-navy sm:text-7xl">
-                            Find out what’s actually worth the hype.
-                        </h1>
-                        <p className="mt-7 max-w-2xl text-lg leading-8 text-muted">
-                            Straight-talking product reviews, practical scores,
-                            and no endless scrolling before the verdict.
-                        </p>
-                        <div className="mt-9 h-1 w-24 rounded-full bg-gradient-to-r from-navy to-brand-500" />
-                    </div>
-                </section>
                 <section
                     aria-labelledby="latest-reviews"
-                    className="mx-auto max-w-7xl px-5 py-14 sm:px-8 sm:py-20"
+                    className="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-16"
                 >
                     <div className="flex items-end justify-between gap-6">
                         <div>
                             <p className="text-xs font-bold tracking-[0.18em] text-brand-700 uppercase">
                                 Fresh verdicts
                             </p>
-                            <h2
+                            <h1
                                 id="latest-reviews"
                                 className="mt-2 text-3xl font-black tracking-tight text-navy sm:text-4xl"
                             >
                                 Latest reviews
-                            </h2>
+                            </h1>
                         </div>
                         <p className="text-sm text-muted">
                             {articles.meta.total} published

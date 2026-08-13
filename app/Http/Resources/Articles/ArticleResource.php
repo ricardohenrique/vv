@@ -6,6 +6,7 @@ use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 /** @mixin Article */
 class ArticleResource extends JsonResource
@@ -17,8 +18,8 @@ class ArticleResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'slug' => $this->slug,
-            'image_url' => Storage::disk('public')->url($this->image_path),
-            'image_alt' => $this->image_alt,
+            'image_url' => $this->imageUrl(),
+            'image_alt' => $this->imageAlt(),
             'summary' => $this->summary,
             'body' => $this->body,
             'rating' => (float) $this->rating,
@@ -41,5 +42,29 @@ class ArticleResource extends JsonResource
                 'slug' => $tag->slug,
             ])->values()->all(),
         ];
+    }
+
+    private function imageUrl(): string
+    {
+        if (Str::startsWith($this->image_path, 'assets/')) {
+            return asset($this->image_path);
+        }
+
+        if (Str::startsWith($this->image_path, 'demo/')) {
+            $filename = Str::replaceEnd('.svg', '.jpg', Str::after($this->image_path, 'demo/'));
+
+            return asset('assets/demo-articles/'.$filename);
+        }
+
+        return Storage::disk('public')->url($this->image_path);
+    }
+
+    private function imageAlt(): string
+    {
+        if (Str::startsWith($this->image_path, 'demo/')) {
+            return $this->category->name.' product review photograph';
+        }
+
+        return $this->image_alt;
     }
 }

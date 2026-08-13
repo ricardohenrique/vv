@@ -1,6 +1,6 @@
 import { Link, usePage } from '@inertiajs/react';
 import type { PropsWithChildren } from 'react';
-import { home, login } from '@/routes';
+import { home } from '@/routes';
 import { index as adminArticles } from '@/routes/admin/articles';
 import type { Auth } from '@/types';
 
@@ -32,14 +32,7 @@ export default function PublicLayout({ children }: PropsWithChildren) {
                         >
                             Admin
                         </Link>
-                    ) : (
-                        <Link
-                            href={login()}
-                            className="text-sm font-semibold text-muted underline decoration-brand-200 underline-offset-4 transition hover:text-brand-700 hover:decoration-brand-500 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-500"
-                        >
-                            Editor login
-                        </Link>
-                    )}
+                    ) : null}
                 </div>
             </header>
             {children}
