@@ -75,6 +75,17 @@ The seeded credentials are `test@example.com` and `password`. They are for
 local development only. The seeded user is an administrator and can manage
 articles at `/admin/articles`.
 
+To replace the entire local database with a populated review catalogue, run:
+
+```bash
+php artisan db:fresh-seed
+```
+
+This destructive local-only command recreates the schema and seeds 500
+published articles across 10 categories and 5 administrator-authors. Each
+article receives between 3 and 10 tags. All seeded authors use the password
+`password`; the primary administrator remains `test@example.com`.
+
 Uploaded article images use the public filesystem disk. Create the local
 storage link once with:
 
